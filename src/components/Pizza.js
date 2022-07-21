@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
-import axios from 'axios';
+// import axios from 'axios';
+import { NavLink } from "react-router-dom";
 import './pizza.css';
 
 const Pizza = () => {
@@ -35,27 +36,48 @@ const Pizza = () => {
   
   return (
     <>
-      <h1 className='heading'>View Pizza</h1>
-      <div className="card_body">
-        <div className="card">
-          {
-            pizzas.map((val)=>{
-              return(
-                <>
-                  {/* <p>{val.}</p> */}
-                  <p>{val.pizzaType}</p>
-                  <p>{val.pizzaName}</p>
-                  <p>{val.pizzaDescription} </p>
-                  <p>{val.pizzaCost}</p>
-                </>
-              )
-            })
-          }
-        </div>
-      </div>
+   <h1 className="text-center">View Pizza</h1>
+    <div className="containers">
+        <table className="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">S.No.</th>
+                <th scope="col">Pizza Type</th>
+                <th scope="col">Pizza Name</th>
+                <th scope="col">Pizza Description</th>
+                <th scope="col">Pizza Cost</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+               {
+                pizzas.map((val)=>{
+                  return(
+                    <>
+                          <tr className='mytable'>
+                          <td scope="row" className=''>{val.pizzaId}</td>
+                          <td>{val.pizzaType}</td>
+                          <td>{val.pizzaName}</td>
+                          <td>{val.pizzaDescription}</td>
+                          <td>{val.pizzaCost}</td>
+                          <td>
+                          <NavLink to="" className="btn btn-primary">Add Pizza</NavLink> &nbsp;
+                          <NavLink to="" className="btn btn-info">Update Pizza</NavLink> &nbsp;
+                          <NavLink to="" className="btn btn-danger">Delete Pizza</NavLink>
+                            </td>
+                          </tr>
+                    </>
+                  )
+                })
+               }
+              
+            </tbody>
+          </table>
+    </div>
 
     </>
 )
 }
 
-export default Pizza
+export default Pizza;

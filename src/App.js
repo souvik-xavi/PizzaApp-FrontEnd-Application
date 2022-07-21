@@ -6,6 +6,8 @@ import Login from './components/Login';
 import Register from './components/Register';
 import Pizza from './components/Pizza';
 import PizzaOrder from './components/PizzaOrder';
+import BookOrder from './components/BookOrder';
+
 function App() {
   return (
     <Router>
@@ -14,8 +16,9 @@ function App() {
       <Routes>
       <Route path="/login" element={<Login/>} />
       <Route path="/register" element={<Register/>} />
-      <Route path="/viewpizza" element={<Pizza/>}/>
+      <Route path="/pizzamgmt" element={<Pizza/>}/>
       <Route path="/orderpizza" element={<PizzaOrder/>}/>
+      <Route path="/BookOrder" element={<BookOrder/>}/>
 
 
       </Routes>

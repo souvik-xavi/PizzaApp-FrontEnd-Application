@@ -117,7 +117,8 @@ export default function Form() {
   };
 
   return (
-    <div className="container">
+    <div className="maindiv">
+       <div className="container">
       <div className="form-box">
         <div className="header-form">
           <h4 className="text-primary text-center">
@@ -166,5 +167,7 @@ export default function Form() {
         </div>
       </div>
     </div>
+      </div>
+   
   );
 }

@@ -86,7 +86,8 @@ export default function Form() {
   };
 
   return (
-    <div style={{marginTop:"4%"}} className="container">
+    <div className="maindiv">
+        <div style={{marginTop:"4%"}} className="container">
       <div className="form-box">
         <div className="header-form">
           <h4 className="text-primary text-center">
@@ -148,5 +149,6 @@ export default function Form() {
         </div>
       </div>
     </div>
-  );
+    </div>
+  );
 }

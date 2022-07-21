@@ -15,7 +15,14 @@ body
     padding: 5% 10%;
 }
 
-input{
+/* input{
+    width:30px;
+    height: 20px;
+    padding: 2px 2px;
+} */
+
+.Order
+{
     width:30px;
     height: 20px;
     padding: 2px 2px;

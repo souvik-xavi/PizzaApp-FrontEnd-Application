@@ -63,15 +63,15 @@ const Pizza = () => {
                           <td>{val.pizzaDescription}</td>
                           <td>{val.pizzaCost}</td>
                           <td>
-                          <NavLink to="/PizzaOrder" className="btn btn-primary">Book Pizza</NavLink> &nbsp;
+                          <NavLink to="/orderpizza" className="btn btn-primary">Book Pizza</NavLink> &nbsp;
                           {/* <NavLink to="" className="btn btn-info">Update Pizza</NavLink> &nbsp;
                           <NavLink to="" className="btn btn-danger">Delete Pizza</NavLink> */}
                             
                             </td>
                             <label>Coupon Id:</label>
-                            <input type="text"></input><br></br>
+                            <input type="text" className="Order"></input><br></br>
                              <label>Quantity:</label>
-                             <input type="text"></input>
+                             <input type="text"className="Order"></input>
                           </tr>
                     </>
                   )

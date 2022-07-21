@@ -69,9 +69,9 @@ const Pizza = () => {
                             
                             </td>
                             <label>Coupon Id:</label>
-                            <input type="text"></input><br></br>
+                            <input type="text" className="Order"></input><br></br>
                              <label>Quantity:</label>
-                             <input type="text"></input>
+                             <input type="text"className="Order"></input>
                           </tr>
                     </>
                   )

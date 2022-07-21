@@ -63,7 +63,7 @@ const Pizza = () => {
                           <td>{val.pizzaDescription}</td>
                           <td>{val.pizzaCost}</td>
                           <td>
-                          <NavLink to="/PizzaOrder" className="btn btn-primary">Book Pizza</NavLink> &nbsp;
+                          <NavLink to="/orderpizza" className="btn btn-primary">Book Pizza</NavLink> &nbsp;
                           {/* <NavLink to="" className="btn btn-info">Update Pizza</NavLink> &nbsp;
                           <NavLink to="" className="btn btn-danger">Delete Pizza</NavLink> */}
                             

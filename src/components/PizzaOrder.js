@@ -37,24 +37,50 @@ const PizzaOrder = () => {
         viewOrder()
     },[])
 
-  return (
-    <>
-        <div className="main">
-            {
-                order.map((val)=>{
+    return (
+      <>
+     <h1 className="text-center">View PizzaOrder</h1>
+      <div className="containers">
+          <table className="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">pizzaOrderId</th>
+                  <th scope="col">quantity</th>
+                  <th scope="col">size</th>
+                  <th scope="col">totalCost</th>
+                  <th scope="col">couponId</th>
+                  <th scope="col">customerId</th>
+                  <th scope="col">pizzaName</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                 {/* {
+                  pizzas.map((val)=>{
                     return(
-                        <>
-                        
-                            <p>{val.totalCost}</p>
-                            <p>{val.couponId}</p>
-                            <p>{val.pizzaName}</p>
-                            <p>{val.totalCost}</p>
-                        </>
+                      <>
+                            <tr className='mytable'>
+                            <td scope="row" className=''>{val.pizzaId}</td>
+                            <td>{val.pizzaType}</td>
+                            <td>{val.pizzaName}</td>
+                            <td>{val.pizzaDescription}</td>
+                            <td>{val.pizzaCost}</td>
+                            <td>
+                            <NavLink to="" className="btn btn-primary">Add Pizza</NavLink> &nbsp;
+                            <NavLink to="" className="btn btn-info">Update Pizza</NavLink> &nbsp;
+                            <NavLink to="" className="btn btn-danger">Delete Pizza</NavLink>
+                              </td>
+                            </tr>
+                      </>
                     )
-                })
-            }
-        </div>
-    </>
+                  })
+                 } */}
+                
+              </tbody>
+            </table>
+      </div>
+  
+      </>
   )
 }
 

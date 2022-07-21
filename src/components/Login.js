@@ -2,9 +2,10 @@ import axios from 'axios';
 import { useState } from "react";
 import { FaEnvelope, FaUserCircle } from "react-icons/fa";
 import { FiLock } from "react-icons/fi";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate,useLocation,Link } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
+import { setLogin } from "../Actions/action";
 
 
 import 'react-toastify/dist/ReactToastify.css';
@@ -14,7 +15,7 @@ import "./Form.css";
 export default function Form() {
 	const navigate = useNavigate();
 
-  
+  let dispatch = useDispatch();
   //States for registration
   var [name, setName] = useState("");
   var [email, setEmail] = useState("");
@@ -59,7 +60,6 @@ export default function Form() {
       "userPassword":password}
       try {
         const response = await axios.post(`http://localhost:8080/login`,{...obj});
-        console.log(response.data);
         toast.dark("Login Successful", {
           position: "top-right",
           autoClose: 5000,
@@ -69,6 +69,7 @@ export default function Form() {
           draggable: true,
           progress: undefined,
         });
+        dispatch(setLogin(response.data.customerId,response.data.type));
         
       } catch (error) {
         console.log(error.response.data.message);

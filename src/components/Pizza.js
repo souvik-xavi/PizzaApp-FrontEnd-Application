@@ -3,6 +3,7 @@ import React, {useState, useEffect} from 'react'
 //import { useHistory } from "react-router-dom";
 import './pizza.css';
 import Popup from 'reactjs-popup';
+import { useSelector } from "react-redux";
 
 
 const Pizza = () => {
@@ -14,6 +15,8 @@ const Pizza = () => {
       pizzaCost: ""
     });
 
+    const temp = useSelector((state) => state);
+    var cusId = temp.id;
 
 
 
@@ -55,7 +58,8 @@ const Pizza = () => {
         
         const{pizzaType, pizzaName, pizzaDescription , pizzaCost} = addPizza;
 
-        const res = await fetch('http://localhost:8080/addPizza/1',{
+        const res = await fetch(`http://localhost:8080/addPizza/${cusId}`,
+        {
             method:"POST",
             headers:{
                 "Content-Type":"application/json"

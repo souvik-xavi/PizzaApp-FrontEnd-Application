@@ -96,21 +96,21 @@ const Pizza = () => {
                               <Popup trigger={<button className="btn btn-primary mx-5 pizzabtn ">Add Pizza</button>} position="right center">
                                  <div className="popup">
                                 <h2>Add Pizza</h2>
-                                <form>
+                                <form className="addPizzaForm">
                                   <div className="form-group">
-                                    <label htmlFor="pizzaType">Pizza Type</label>
+                                    <label className="mylabel" htmlFor="pizzaType">Pizza Type</label>
                                     <input type="text" className="form-control" id="pizzaType" placeholder="Enter Pizza Type" onChange={setPizzaDetails} value={addPizza.pizzaType} name="pizzaType"/>
                                   </div>
                                   <div className="form-group">
-                                    <label htmlFor="pizzaName">Pizza Name</label>
+                                    <label className="mylabel" htmlFor="pizzaName">Pizza Name</label>
                                     <input type="text" className="form-control" id="pizzaName" placeholder="Enter Pizza Name" onChange={setPizzaDetails} value={addPizza.pizzaName} name="pizzaName" />
                                   </div>
                                   <div className="form-group">
-                                    <label htmlFor="pizzaDescription">Pizza Description</label>
+                                    <label className="mylabel" htmlFor="pizzaDescription">Pizza Description</label>
                                     <input type="text" className="form-control" id="pizzaDescription" placeholder="Enter Pizza Description" onChange={setPizzaDetails} value={addPizza.pizzaDescription} name={"pizzaDescription"} />
                                   </div>
                                   <div className="form-group">
-                                    <label htmlFor="pizzaCost">Pizza Cost</label>
+                                    <label className="mylabel" htmlFor="pizzaCost">Pizza Cost</label>
                                     <input type="text" className="form-control" id="pizzaCost" placeholder="Enter Pizza Cost" onChange={setPizzaDetails} value={addPizza.pizzaCost} name={"pizzaCost"} />
                                   </div>
                                   <button type="submit" className="btn btn-primary" onClick={addPizzaDetails}>Submit</button>

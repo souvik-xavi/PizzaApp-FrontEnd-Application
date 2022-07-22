@@ -9,10 +9,23 @@ body{
     height: 100vh; */
 }
 .containers{
+    position: relative;
     padding: 5% 10%;
 }
 .pizzabtn{
     margin-left: 10% !important;
+}
+.addPizzaForm{
+    position: absolute;
+    top: -5%;
+    width: 200%;
+    background-color: rgb(255, 255, 255);
+    /* margin-top: 20%; */
+    padding: 10% 5% 0 5%;
+    box-shadow: 5px 7px 5px rgba(83, 83, 83, 0.219);
+}
+.mylabel{
+    margin-top: 15px;
 }
 /* .pizza{
     width: 100%;

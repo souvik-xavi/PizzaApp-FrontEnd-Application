@@ -40,18 +40,18 @@ const PizzaOrder = () => {
 
     return (
       <>
-     <h1 className="text-center">View PizzaOrder</h1>
+     <h1 className="text-center" id="orderheader">View PizzaOrder</h1>
       <div className="containers">
           <table className="table table-striped">
               <thead>
                 <tr>
-                  <th scope="col">pizzaOrderId</th>
+                  <th scope="col">PizzaOrderId</th>
                   {/* <th scope="col">quantity</th>
                   <th scope="col">size</th>
                   <th scope="col">totalCost</th> */}
-                  <th scope="col">couponId</th>
-                  <th scope="col">customerId</th>
-                  <th scope="col">pizzaName</th>
+                  <th scope="col">CouponId</th>
+                  <th scope="col">CustomerId</th>
+                  <th scope="col">PizzaName</th>
                 </tr>
               </thead>
               <tbody>

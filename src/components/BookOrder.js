@@ -64,11 +64,11 @@ const Pizza = () => {
 
   return (
     <>
-      <h1 className="text-center">Order Pizza</h1>
-      <Popup trigger={<button className="btn btn-primary">Book Pizza Order</button>} position="right center">
+      <h1 className="text-center" id="orderheader">Order Pizza</h1>
+      <Popup trigger={<button className="btn btn-primary mx-5 orderbtn">Book Pizza Order</button>} position="right center">
         <div className="popup">
           <h2>Book Pizza Order</h2>
-          <form onSubmit={submit}>
+          <form onSubmit={submit} className="bookpizzaform">
             <div>
               <label>Pizza id</label>
               <input name="pizza_id" onChange={handleChange} value={order.pizza_id} type="text" className="form-control" placeholder="Enter Pizza id" />

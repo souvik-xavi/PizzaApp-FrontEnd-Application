@@ -121,7 +121,7 @@ const Pizza = () => {
         <table className="table table-striped">
             <thead>
               <tr>
-                <th scope="col">S.No.</th>
+                <th scope="col">Pizza ID</th>
                 <th scope="col">Pizza Type</th>
                 <th scope="col">Pizza Name</th>
                 <th scope="col">Pizza Description</th>

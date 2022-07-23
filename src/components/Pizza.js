@@ -21,12 +21,21 @@ const Pizza = () => {
     const [pizzaName, setPizzaName] = useState("");
     const [pizzaDescription, setPizzaDescription] = useState("");
     const [pizzaCost, setPizzaCost] = useState("");
-    const [pizzaId, setPizzaId] = useState("");
+    const [pizzaId, setPizzaId] = useState();
 
     const temp = useSelector((state) => state);
     var cusId = temp.id;
 
-    //const history = useHistory();
+   
+
+
+
+
+
+
+
+
+
 
     const viewPizza = async (e) => {
       const res = await fetch(`http://localhost:8080/viewPizza`, {
@@ -49,6 +58,13 @@ const Pizza = () => {
       }
     }
       
+
+
+
+
+
+
+
      
       const setPizzaDetails = async (e) => {
         const{name,value}=e.target;
@@ -59,6 +75,13 @@ const Pizza = () => {
           }
       })
       }
+
+
+
+
+
+
+
 
       const addPizzaDetails = async (e) => {
         e.preventDefault();
@@ -88,6 +111,13 @@ const Pizza = () => {
         viewPizza()         
       };
 
+
+
+
+
+
+
+
       const setUpdatePizzaDetails = (e)=>{
         const{name,value} = e.target;
 
@@ -98,24 +128,42 @@ const Pizza = () => {
             }
         })
     }
-    const xyz = 1;
-    const addUpdatePizzaDetails = async (e) => {
+    
+
+
+
+
+
+
+
+
+
+
+    const addUpdatePizzaDetails = async (e,pID) => {
       e.preventDefault();
-      const obj={"pizzaId":pizzaId,"pizzaType":pizzaType,"pizzaName":pizzaName,"pizzaDescription":pizzaDescription,"pizzaCost":pizzaCost}
+      const obj={"pizzaId":pID,"pizzaType":pizzaType,"pizzaName":pizzaName,"pizzaDescription":pizzaDescription,"pizzaCost":pizzaCost}
       try {
-        const response = await axios.post(`http://localhost:8080/updatePizza/${xyz}`,{...obj});
-        console.log(response.data);
+        console.log(obj);
+        console.log(pID);
+        const response = await axios.put(`http://localhost:8080/updatePizza/1`,obj);
+         console.log(response);
       } catch (error) {
-        console.log(error.response.data.message);
-      }
-      
+        console.log(error);
+      }    
       
       console.log(pizzaId, pizzaType, pizzaName, pizzaDescription, pizzaCost);
       viewPizza();
     }
 
-    const UpdatePizzaAutoFill = async (e) => {
-    }
+
+
+
+
+
+
+
+  
+
 
       const delPizza = async (delpiz) => 
       {
@@ -123,9 +171,7 @@ const Pizza = () => {
           const res = await fetch(`http://localhost:8080/delPizza/${delpiz}/1`,
           {
               method:"delete",
-              // headers:{
-              //     "Authorization":"Bearer " + localStorage.getItem('jwt')
-              // }
+              
           });
           const postDelete = await res.json();
   
@@ -135,14 +181,15 @@ const Pizza = () => {
               });
               setPizzas(newData);
               window.alert("Data Delete Successfully");
-              //history.push("/pizzamgmt");
-          }
+              }
           
       } catch (error) {
           console.log(error)
         }
         viewPizza()
       }
+
+
 
 
   
@@ -206,7 +253,7 @@ const Pizza = () => {
                           <td>
                             
                             
-                            <Popup trigger={<button className="btn btn-primary" onClick={()=>UpdatePizzaAutoFill(val.pizzaId)} >Update Pizza</button>} position="right center">
+                            <Popup trigger={<button className="btn btn-primary" onClick={()=>setPizzaId(val.pizzaId)} >Update Pizza</button>} position="right center">
                               <div className="popup">
                                 <h2>Update Pizza</h2>
                                 <form className="addPizzaForm">
@@ -230,7 +277,7 @@ const Pizza = () => {
                                     <label htmlFor="pizzaCost">Pizza Cost</label>
                                     <input type="text" className="form-control" id="pizzaCost" onChange={(e)=>setPizzaCost(e.target.value)} placeholder={val.pizzaCost} name="pizzaCost" />
                                   </div>
-                                  <button type="submit" className="btn btn-primary" onClick={addUpdatePizzaDetails} >Submit</button>
+                                  <button type="submit" className="btn btn-primary" onClick={(e)=>addUpdatePizzaDetails(e,val.pizzaId)} >Submit</button>
                                 </form>
                               </div>
                             </Popup>

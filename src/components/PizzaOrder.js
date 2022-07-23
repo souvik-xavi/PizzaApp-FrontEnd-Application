@@ -40,6 +40,8 @@ const PizzaOrder = () => {
 
     return (
       <>
+      
+    <br></br><br></br><br></br>
      <h1 className="text-center" id="orderheader">View PizzaOrder</h1>
       <div className="containers">
           <table className="table table-striped">

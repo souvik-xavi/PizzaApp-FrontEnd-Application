@@ -86,6 +86,7 @@ const Pizza = () => {
 
   return (
     <>
+    <br></br><br></br><br></br>
       <h1 className="text-center" id="orderheader">Order Pizza</h1>
       <Popup trigger={<button className="btn btn-outline-primary mx-5">Book Pizza Order</button>} position="right center">
         <div className="popup">

@@ -87,7 +87,7 @@ const Pizza = () => {
   return (
     <>
       <h1 className="text-center" id="orderheader">Order Pizza</h1>
-      <Popup trigger={<button className="btn btn-primary mx-5 orderbtn">Book Pizza Order</button>} position="right center">
+      <Popup trigger={<button className="btn btn-outline-primary mx-5">Book Pizza Order</button>} position="right center">
         <div className="popup">
           <h2>Book Pizza Order</h2>
           <form onSubmit={submit} className="bookpizzaform">
@@ -103,7 +103,7 @@ const Pizza = () => {
               <label htmlFor="quantity">Quantity</label>
               <input name="quantity" onChange={handleChange} value={order.quantity} type="text" className="form-control" placeholder="Enter Quantity" />
             </div>
-            <button type="submit" className="btn btn-primary mx-5 orderbtn">Submit</button>
+            <button type="submit" className="btn btn-outline-primary mx-5">Submit</button>
           </form>
         </div>
       </Popup>

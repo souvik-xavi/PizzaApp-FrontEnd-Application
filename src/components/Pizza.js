@@ -4,6 +4,7 @@ import React, {useState, useEffect} from 'react'
 import './pizza.css';
 import Popup from 'reactjs-popup';
 import { useSelector } from "react-redux";
+import axios from 'axios';
 
 
 const Pizza = () => {
@@ -15,10 +16,17 @@ const Pizza = () => {
       pizzaCost: ""
     });
 
+
+    const [pizzaType, setPizzaType] = useState("");
+    const [pizzaName, setPizzaName] = useState("");
+    const [pizzaDescription, setPizzaDescription] = useState("");
+    const [pizzaCost, setPizzaCost] = useState("");
+    const [pizzaId, setPizzaId] = useState("");
+
     const temp = useSelector((state) => state);
     var cusId = temp.id;
 
-
+    //const history = useHistory();
 
     const viewPizza = async (e) => {
       const res = await fetch(`http://localhost:8080/viewPizza`, {
@@ -58,15 +66,14 @@ const Pizza = () => {
         
         const{pizzaType, pizzaName, pizzaDescription , pizzaCost} = addPizza;
 
-        const res = await fetch(`http://localhost:8080/addPizza/${cusId}`,
+        const res = await fetch(`http://localhost:8080/addPizza/1`,
         {
+          //${cusId}
             method:"POST",
             headers:{
                 "Content-Type":"application/json"
             },
-            body:JSON.stringify({
-                pizzaType, pizzaName, pizzaDescription , pizzaCost
-            })
+            body:JSON.stringify({pizzaType, pizzaName, pizzaDescription , pizzaCost})
         });
 
         const addData = await res.json();
@@ -77,12 +84,67 @@ const Pizza = () => {
             
         }else{
             window.alert("Data Save Successfully");
-        }
-         
-      
-      
-      
+        } 
+        viewPizza()         
       };
+
+      const setUpdatePizzaDetails = (e)=>{
+        const{name,value} = e.target;
+
+        setAddPizza((preData)=>{
+            return{
+                ...preData,
+                [name]:value
+            }
+        })
+    }
+    const xyz = 1;
+    const addUpdatePizzaDetails = async (e) => {
+      e.preventDefault();
+      const obj={"pizzaId":pizzaId,"pizzaType":pizzaType,"pizzaName":pizzaName,"pizzaDescription":pizzaDescription,"pizzaCost":pizzaCost}
+      try {
+        const response = await axios.post(`http://localhost:8080/updatePizza/${xyz}`,{...obj});
+        console.log(response.data);
+      } catch (error) {
+        console.log(error.response.data.message);
+      }
+      
+      
+      console.log(pizzaId, pizzaType, pizzaName, pizzaDescription, pizzaCost);
+      viewPizza();
+    }
+
+    const UpdatePizzaAutoFill = async (e) => {
+    }
+
+      const delPizza = async (delpiz) => 
+      {
+        try {
+          const res = await fetch(`http://localhost:8080/delPizza/${delpiz}/1`,
+          {
+              method:"delete",
+              // headers:{
+              //     "Authorization":"Bearer " + localStorage.getItem('jwt')
+              // }
+          });
+          const postDelete = await res.json();
+  
+          if(postDelete){
+              const newData = postDelete.filter((item)=>{
+                  return item._id !== postDelete._id
+              });
+              setPizzas(newData);
+              window.alert("Data Delete Successfully");
+              //history.push("/pizzamgmt");
+          }
+          
+      } catch (error) {
+          console.log(error)
+        }
+        viewPizza()
+      }
+
+
   
     
     useEffect(()=>{
@@ -107,11 +169,11 @@ const Pizza = () => {
                                   </div>
                                   <div className="form-group">
                                     <label className="mylabel" htmlFor="pizzaDescription">Pizza Description</label>
-                                    <input type="text" className="form-control" id="pizzaDescription" placeholder="Enter Pizza Description" onChange={setPizzaDetails} value={addPizza.pizzaDescription} name={"pizzaDescription"} />
+                                    <input type="text" className="form-control" id="pizzaDescription" placeholder="Enter Pizza Description" onChange={setPizzaDetails} value={addPizza.pizzaDescription} name="pizzaDescription" />
                                   </div>
                                   <div className="form-group">
                                     <label className="mylabel" htmlFor="pizzaCost">Pizza Cost</label>
-                                    <input type="text" className="form-control" id="pizzaCost" placeholder="Enter Pizza Cost" onChange={setPizzaDetails} value={addPizza.pizzaCost} name={"pizzaCost"} />
+                                    <input type="text" className="form-control" id="pizzaCost" placeholder="Enter Pizza Cost" onChange={setPizzaDetails} value={addPizza.pizzaCost} name="pizzaCost" />
                                   </div>
                                   <button type="submit" className="btn btn-primary" onClick={addPizzaDetails}>Submit</button>
                                 </form>
@@ -143,46 +205,38 @@ const Pizza = () => {
                           <td>{val.pizzaCost}</td>
                           <td>
                             
-                            <Popup trigger={<button className="btn btn-primary">Update Pizza</button>} position="right center">
+                            
+                            <Popup trigger={<button className="btn btn-primary" onClick={()=>UpdatePizzaAutoFill(val.pizzaId)} >Update Pizza</button>} position="right center">
                               <div className="popup">
                                 <h2>Update Pizza</h2>
-                                <form>
+                                <form className="addPizzaForm">
                                   <div>
                                   <label htmlFor="pizzaType">Pizza id</label>
-                                    <input type="text" className="form-control" id="pizzaId" placeholder="Enter Pizza id" />
+                                    <input type="text" className="form-control" id="pizzaId" placeholder="Enter Pizza id" value={val.pizzaId} readOnly = {true} />
                                   </div>
                                   <div className="form-group">
                                     <label htmlFor="pizzaType">Pizza Type</label>
-                                    <input type="text" className="form-control" id="pizzaType" placeholder="Enter Pizza Type" />
+                                    <input type="text" className="form-control" id="pizzaType" onChange={(e)=>setPizzaType(e.target.value)} placeholder={val.pizzaType} name="pizzaType" />
                                   </div>
                                   <div className="form-group">
                                     <label htmlFor="pizzaName">Pizza Name</label>
-                                    <input type="text" className="form-control" id="pizzaName" placeholder="Enter Pizza Name" />
+                                    <input type="text" className="form-control" id="pizzaName" onChange={(e)=>setPizzaName(e.target.value)} placeholder={val.pizzaName} name="pizzaName" />
                                   </div>
                                   <div className="form-group">
                                     <label htmlFor="pizzaDescription">Pizza Description</label>
-                                    <input type="text" className="form-control" id="pizzaDescription" placeholder="Enter Pizza Description" />
+                                    <input type="text" className="form-control" id="pizzaDescription" onChange={(e)=>setPizzaDescription(e.target.value)} placeholder={val.pizzaDescription} name="pizzaDescription" />
                                   </div>
                                   <div className="form-group">
                                     <label htmlFor="pizzaCost">Pizza Cost</label>
-                                    <input type="text" className="form-control" id="pizzaCost" placeholder="Enter Pizza Cost" />
+                                    <input type="text" className="form-control" id="pizzaCost" onChange={(e)=>setPizzaCost(e.target.value)} placeholder={val.pizzaCost} name="pizzaCost" />
                                   </div>
-                                  <button type="submit" className="btn btn-primary">Submit</button>
+                                  <button type="submit" className="btn btn-primary" onClick={addUpdatePizzaDetails} >Submit</button>
                                 </form>
                               </div>
                             </Popup>
-                            <Popup trigger={<button className="btn btn-primary">Delete Pizza</button>} position="right center">
-                              <div className="popup">
-                                <h2>Delete Pizza</h2>
-                                <form>
-                                  <div className="form-group">
-                                    <label htmlFor="pizzaType">Pizza id</label>
-                                    <input type="text" className="form-control" id="pizzaId" placeholder="Enter Pizza id" />
-                                  </div>
-                                  <button type="submit" className="btn btn-primary">Submit</button>
-                                </form>
-                              </div>
-                            </Popup>
+                            &nbsp; &nbsp; &nbsp;  &nbsp;
+                            <button className="btn btn-primary" onClick={()=>delPizza(val.pizzaId)} >Delete Pizza </button>
+                            
                           </td>
                         </tr>
                     </>

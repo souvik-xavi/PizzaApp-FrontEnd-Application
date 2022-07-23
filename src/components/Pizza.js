@@ -5,6 +5,7 @@ import Popup from 'reactjs-popup';
 import { useSelector } from "react-redux";
 import axios from 'axios';
 //import Header from '../layout/Header';
+import { toast, ToastContainer } from "react-toastify";
 
 
 
@@ -55,8 +56,15 @@ const Pizza = () => {
       console.log(data);
   
       if (res.status === 404 || !data) {
-        window.alert("Error: Data Not Fetch");
-        console.log("Data Not Fetch");
+        toast.dark('Error: Data Not Fetch', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          });
       } else {
         setPizzas(data);
         // window.alert("Data Fetch Successfully");
@@ -108,11 +116,26 @@ const Pizza = () => {
         const addData = await res.json();
 
         if(res.status === 404 || !addData){
-            window.alert("Error: Data Not Save");
-            console.log("Data Not Saved");
+          toast.dark('Error: Data Not Save', {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            });
             
         }else{
-            window.alert("Data Save Successfully");
+          toast.dark('Data Added Successfully', {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            });
         } 
         viewPizza()         
       };
@@ -180,19 +203,33 @@ const Pizza = () => {
               
           });
           const postDelete = await res.json();
+
+          
   
           if(postDelete){
-              const newData = postDelete.filter((item)=>{
+              const newData = postDelete.filter((item)=>
+              {
                   return item._id !== postDelete._id
+                  
               });
               setPizzas(newData);
-              window.alert("Data Delete Successfully");
+              
+              
               }
           
       } catch (error) {
           console.log(error)
         }
         viewPizza()
+        toast.dark('Data Delete Successfully', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          });
       }
 
 
@@ -208,7 +245,7 @@ const Pizza = () => {
   return (
     <>
    <h1 className="text-center">Pizza Management</h1>
-                              <Popup trigger={<button className="btn btn-primary mx-5 pizzabtn ">Add Pizza</button>} position="right center">
+                              <Popup trigger={<button className="button mx-5">Add Pizza</button>} position="right center">
                                  <div className="popup">
                                 <h2>Add Pizza</h2>
                                 <form className="addPizzaForm">
@@ -233,8 +270,8 @@ const Pizza = () => {
                               </div>
                             </Popup>
     <div className="containers">
-        <table className="table table-striped">
-            <thead>
+        <table className="table table-hover">
+            <thead >
               <tr>
                 <th scope="col">Pizza ID</th>
                 <th scope="col">Pizza Type</th>
@@ -250,7 +287,7 @@ const Pizza = () => {
                 pizzas.map((val)=>{
                   return(
                     <>
-                          <tr className='mytable'>
+                          <tr className='pizzaText'>
                           <td scope="row" className=''>{val.pizzaId}</td>
                           <td>{val.pizzaType}</td>
                           <td>{val.pizzaName}</td>
@@ -259,7 +296,7 @@ const Pizza = () => {
                           <td>
                             
                             
-                            <Popup trigger={<button className="btn btn-primary" onClick={()=>setPizzaId(val.pizzaId)} >Update Pizza</button>} position="right center">
+                            <Popup trigger={<button className="buttonU" onClick={()=>setPizzaId(val.pizzaId)} >Update Pizza</button>} position="right center">
                               <div className="popup">
                                 <h2>Update Pizza</h2>
                                 <form className="addPizzaForm">
@@ -288,7 +325,7 @@ const Pizza = () => {
                               </div>
                             </Popup>
                             &nbsp; &nbsp; &nbsp;  &nbsp;
-                            <button className="btn btn-primary" onClick={()=>delPizza(val.pizzaId)} >Delete Pizza </button>
+                            <button className="buttonD" onClick={()=>delPizza(val.pizzaId)} >Delete Pizza </button>
                             
                           </td>
                         </tr>

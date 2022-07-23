@@ -266,12 +266,13 @@ function Nav(props) {
               </MenuItem>
               {role==='admin' ?
               <div>
-              <MenuItem  onClick={()=> navigate("/viewProductList")}>
-                <Typography textAlign="center">My Products</Typography>
-              </MenuItem>
                 <MenuItem  onClick={handleAddProduct}>
-                <Typography textAlign="center">Add Product</Typography>
+                <Typography textAlign="center">Pizza Management</Typography>
               </MenuItem></div>:<MenuItem></MenuItem>}
+              <MenuItem  onClick={()=> navigate("/viewAllPizzaOrder")}>
+                <Typography textAlign="center">View All Pizza Order</Typography>
+              </MenuItem>
+                
               <MenuItem  onClick={handleLogout}>
                 <Typography textAlign="center">Logout</Typography>
               </MenuItem>

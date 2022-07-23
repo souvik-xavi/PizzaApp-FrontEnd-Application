@@ -9,6 +9,7 @@ import PizzaOrder from './components/PizzaOrder';
 import BookOrder from './components/BookOrder';
 //import Header from './layout/Header';
 import Nav from './layout/Nav';
+import ViewAllPizzaOrder from './components/ViewAllPizzaOrder';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
       <Route path="/pizzamgmt" element={<Pizza/>}/>
       <Route path="/vieworder" element={<PizzaOrder/>}/>
       <Route path="/BookOrder" element={<BookOrder/>}/>
+      <Route path="/ViewAllPizzaOrder" element={<ViewAllPizzaOrder/>}/>
 
 
       </Routes>

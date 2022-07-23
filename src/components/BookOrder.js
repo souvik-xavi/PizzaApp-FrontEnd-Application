@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
-// import axios from 'axios';
+import axios from 'axios';
 import { NavLink } from "react-router-dom";
 //import './pizza.css';
-
+import { toast, ToastContainer } from "react-toastify";
 import Popup from 'reactjs-popup';
 import './BookOrder.css';
 import { useSelector } from "react-redux";
+import { async } from 'q';
 
 const Pizza = () => {
   const [pizzas, setPizzas] = useState([]);
@@ -18,16 +19,37 @@ const Pizza = () => {
     setOrder({ ...order, [e.target.name]:e.target.value });
   }
 
-  const submit = (e) => {
+  let q
+  const submit =async (e) => {
     e.preventDefault();
     const pizzaData = {
       pizza_id: order.pizza_id,
       coupon_id: order.coupon_id,
       quantity: order.quantity
     }
-    console.log(pizzaData);
+    q = pizzaData.quantity
+    console.log(pizzaData.pizza_id);
     console.log(cusId);
+    console.log(q);
+     try{
+      const res = await axios.post(`http://localhost:8080/bookPizzaOrder/${cusId}/${pizzaData.pizza_id}/${pizzaData.coupon_id}`,{q})
+      console.log(res)
+      toast.dark(res.data, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+     }
+     catch(error){
+      console.log(error)
+     }
+
   }
+  
 
   
   

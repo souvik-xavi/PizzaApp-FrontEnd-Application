@@ -11,7 +11,7 @@ const PizzaOrder = () => {
     var cusId = temp.id;
 
     const viewOrder = async (e) => {
-      const res = await fetch(`http://localhost:8080/viewPizzaOrder/1`, {
+      const res = await fetch(`http://localhost:8080/viewPizzaOrder/${cusId}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

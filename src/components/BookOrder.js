@@ -1,39 +1,46 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { NavLink } from "react-router-dom";
 //import './pizza.css';
 import { toast, ToastContainer } from "react-toastify";
-import Popup from 'reactjs-popup';
-import './BookOrder.css';
+import Popup from "reactjs-popup";
+import "./BookOrder.css";
 import { useSelector } from "react-redux";
-import { async } from 'q';
+import { async } from "q";
 
 const Pizza = () => {
   const [pizzas, setPizzas] = useState([]);
-  const [order, setOrder] = useState({ pizza_id: "", coupon_id: "", quantity: "" });
+  const [order, setOrder] = useState({
+    pizza_id: "",
+    coupon_id: "",
+    quantity: "",
+  });
 
   const temp = useSelector((state) => state);
   var cusId = temp.id;
-  
-  const handleChange = (e) => {
-    setOrder({ ...order, [e.target.name]:e.target.value });
-  }
 
-  let q
-  const submit =async (e) => {
+  const handleChange = (e) => {
+    setOrder({ ...order, [e.target.name]: e.target.value });
+  };
+
+  let q;
+  const submit = async (e) => {
     e.preventDefault();
     const pizzaData = {
       pizza_id: order.pizza_id,
       coupon_id: order.coupon_id,
-      quantity: order.quantity
-    }
-    q = pizzaData.quantity
+      quantity: order.quantity,
+    };
+    q = pizzaData.quantity;
     console.log(pizzaData.pizza_id);
     console.log(cusId);
     console.log(q);
-     try{
-      const res = await axios.post(`http://localhost:8080/bookPizzaOrder/${cusId}/${pizzaData.pizza_id}/${pizzaData.coupon_id}`,{q})
-      console.log(res)
+    try {
+      const res = await axios.post(
+        `http://localhost:8080/bookPizzaOrder/${cusId}/${pizzaData.pizza_id}/${pizzaData.coupon_id}`,
+        { q }
+      );
+      console.log(res);
       toast.dark(res.data, {
         position: "top-right",
         autoClose: 5000,
@@ -43,23 +50,17 @@ const Pizza = () => {
         draggable: true,
         progress: undefined,
       });
-     }
-     catch(error){
-      console.log(error)
-     }
-
-  }
-  
-
-  
-  
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const viewPizza = async (e) => {
     const res = await fetch(`http://localhost:8080/viewPizza`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-      }
+      },
     });
 
     const data = await res.json();
@@ -71,40 +72,72 @@ const Pizza = () => {
     } else {
       setPizzas(data);
       // window.alert("Data Fetch Successfully");
-      console.log("1" + pizzas)
+      console.log("1" + pizzas);
     }
-
-
-
   };
 
   useEffect(() => {
-    viewPizza()
-  }, [])
-
-
+    viewPizza();
+  }, []);
 
   return (
     <>
-    <br></br><br></br><br></br>
-      <h1 className="text-center" id="orderheader">Order Pizza</h1>
-      <Popup trigger={<button className="btn btn-outline-primary mx-5">Book Pizza Order</button>} position="right center">
+      <br></br>
+      <br></br>
+      <br></br>
+      <h1 className="text-center" id="orderheader">
+        Order Pizza
+      </h1>
+      <Popup
+        trigger={
+          <button className="btn btn-outline-primary mx-5 orderbtn">
+            Book Pizza Order
+          </button>
+        }
+        position="right center"
+      >
         <div className="popup">
           <h2>Book Pizza Order</h2>
           <form onSubmit={submit} className="bookpizzaform">
             <div>
-              <label>Pizza id</label>
-              <input name="pizza_id" onChange={handleChange} value={order.pizza_id} type="text" className="form-control" placeholder="Enter Pizza id" />
+              <label>Pizza Id</label>
+              <input
+                name="pizza_id"
+                onChange={handleChange}
+                value={order.pizza_id}
+                type="text"
+                className="form-control"
+                placeholder="Enter Pizza Id"
+              />
             </div>
             <div>
               <label htmlFor="couponId">Coupon Id</label>
-              <input name="coupon_id" onChange={handleChange} value={order.coupon_id} type="text" className="form-control" placeholder="Enter Coupon Id" />
+              <input
+                name="coupon_id"
+                onChange={handleChange}
+                value={order.coupon_id}
+                type="text"
+                className="form-control"
+                placeholder="Enter Coupon Id"
+              />
             </div>
             <div>
               <label htmlFor="quantity">Quantity</label>
-              <input name="quantity" onChange={handleChange} value={order.quantity} type="text" className="form-control" placeholder="Enter Quantity" />
+              <input
+                name="quantity"
+                onChange={handleChange}
+                value={order.quantity}
+                type="text"
+                className="form-control"
+                placeholder="Enter Quantity"
+              />
             </div>
-            <button type="submit" className="btn btn-outline-primary mx-5">Submit</button>
+            <button
+              type="submit"
+              className="btn btn-outline-primary mx-5 orderbtn"
+            >
+              Submit
+            </button>
           </form>
         </div>
       </Popup>
@@ -121,37 +154,26 @@ const Pizza = () => {
             </tr>
           </thead>
           <tbody>
-
-            {
-              pizzas.map((val) => {
-                return (
-                  <>
-                    <tr className='mytable'>
-                      <td scope="row" className=''>{val.pizzaId}</td>
-                      <td>{val.pizzaType}</td>
-                      <td>{val.pizzaName}</td>
-                      <td>{val.pizzaDescription}</td>
-                      <td>{val.pizzaCost}</td>
-                      {/* <td>
-                          <NavLink to="/orderpizza" className="btn btn-primary">Book Pizza</NavLink> &nbsp;
-                            
-                          </td>
-                            <label>Coupon Id:</label>
-                            <input type="text" className="Order"></input><br></br>
-                             <label>Quantity:</label>
-                             <input type="text"className="Order"></input>  */}
-                    </tr>
-                  </>
-                )
-              })
-            }
-
+            {pizzas.map((val) => {
+              return (
+                <>
+                  <tr className="mytable">
+                    <td scope="row" className="">
+                      {val.pizzaId}
+                    </td>
+                    <td>{val.pizzaType}</td>
+                    <td>{val.pizzaName}</td>
+                    <td>{val.pizzaDescription}</td>
+                    <td>{val.pizzaCost}</td>
+                  </tr>
+                </>
+              );
+            })}
           </tbody>
         </table>
       </div>
-
     </>
-  )
-}
+  );
+};
 
 export default Pizza;

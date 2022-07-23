@@ -1,87 +1,84 @@
-import React,{useState, useEffect} from 'react';
-import { NavLink, useParams, useHistory } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { NavLink, useParams, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const PizzaOrder = () => {
+  // const history = useHistory();
 
-    // const history = useHistory();
+  const [order, setOrder] = useState([]);
+  const temp = useSelector((state) => state);
+  var cusId = temp.id;
 
-    const [order, setOrder] = useState([]);
-    const temp = useSelector((state) => state);
-    var cusId = temp.id;
+  const viewOrder = async (e) => {
+    const res = await fetch(`http://localhost:8080/viewPizzaOrder/${cusId}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
-    const viewOrder = async (e) => {
-      const res = await fetch(`http://localhost:8080/viewPizzaOrder/${cusId}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        }
-      });
-  
-      const data = await res.json();
-      console.log(data);
-  
-      if (res.status === 404 || !data) {
-        window.alert("Error: Data Not Fetch");
-        console.log("Data Not Fetch");
-      } else {
-        setOrder(data);
-        // window.alert("Data Fetch Successfully");
-        // console.log("1" + pizzas)
-      }
-      
-     
+    const data = await res.json();
+    console.log(data);
 
-    };
-  
-    useEffect(()=>{
-        viewOrder()
-    },[])
+    if (res.status === 404 || !data) {
+      window.alert("Error: Data Not Fetch");
+      console.log("Data Not Fetch");
+    } else {
+      setOrder(data);
+      // window.alert("Data Fetch Successfully");
+      // console.log("1" + pizzas)
+    }
+  };
 
-    return (
-      <>
-      
-    <br></br><br></br><br></br>
-     <h1 className="text-center" id="orderheader">View PizzaOrder</h1>
+  useEffect(() => {
+    viewOrder();
+  }, []);
+
+  return (
+    <>
+      <br></br>
+      <br></br>
+      <br></br>
+      <h1 className="text-center" id="orderheader">
+        View PizzaOrder
+      </h1>
       <div className="containers">
-          <table className="table table-striped">
-              <thead>
-                <tr>
-                  <th scope="col">PizzaOrderId</th>
-                  {/* <th scope="col">quantity</th>
+        <table className="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">PizzaOrderId</th>
+              {/* <th scope="col">quantity</th>
                   <th scope="col">size</th>
                   <th scope="col">totalCost</th> */}
-                  <th scope="col">CouponId</th>
-                  <th scope="col">CustomerId</th>
-                  <th scope="col">PizzaName</th>
-                </tr>
-              </thead>
-              <tbody>
-                
-                  {
-                  order.map((val)=>{
-                    return(
-                      <>
-                            <tr className='mytable'>
-                            <td scope="row" className=''>{val.pizzaOrderId}</td>
-                            {/* <td>{val.quantiy}</td>
+              <th scope="col">CouponId</th>
+              <th scope="col">CustomerId</th>
+              <th scope="col">PizzaName</th>
+            </tr>
+          </thead>
+          <tbody>
+            {order.map((val) => {
+              return (
+                <>
+                  <tr className="mytable">
+                    <td scope="row" className="">
+                      {val.pizzaOrderId}
+                    </td>
+                    {/* <td>{val.quantiy}</td>
                             <td>{val.size}</td>
                             <td>{val.totalCost}</td> */}
-                            <td>{val.couponId}</td>
-                            <td>{val.customerId}</td>
-                            <td>{val.pizzaName}</td>
-                            </tr>
-                      </>
-                    )
-                  })
-                 } 
-                
-              </tbody>
-            </table>
+                    <td>{val.couponId}</td>
+                    <td>{val.customerId}</td>
+                    <td>{val.pizzaName}</td>
+                  </tr>
+                </>
+              );
+            })}
+          </tbody>
+        </table>
       </div>
-  
-      </>
-  )
-}
+          
+    </>
+  );
+};
 
-export default PizzaOrder
+export default PizzaOrder;

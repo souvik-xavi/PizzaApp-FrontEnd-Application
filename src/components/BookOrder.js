@@ -81,7 +81,7 @@ const Pizza = () => {
               <label htmlFor="quantity">Quantity</label>
               <input name="quantity" onChange={handleChange} value={order.quantity} type="text" className="form-control" placeholder="Enter Quantity" />
             </div>
-            <button type="submit" className="btn btn-primary">Submit</button>
+            <button type="submit" className="btn btn-primary mx-5 orderbtn">Submit</button>
           </form>
         </div>
       </Popup>

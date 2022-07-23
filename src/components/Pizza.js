@@ -4,6 +4,9 @@ import './pizza.css';
 import Popup from 'reactjs-popup';
 import { useSelector } from "react-redux";
 import axios from 'axios';
+//import Header from '../layout/Header';
+
+
 
 
 
@@ -26,6 +29,8 @@ const Pizza = () => {
 
     const temp = useSelector((state) => state);
     var cusId = temp.id;
+
+    console.log(temp.id);
 
    
 
@@ -90,7 +95,7 @@ const Pizza = () => {
         
         const{pizzaType, pizzaName, pizzaDescription , pizzaCost} = addPizza;
 
-        const res = await fetch(`http://localhost:8080/addPizza/1`,
+        const res = await fetch(`http://localhost:8080/addPizza/${cusId}`,
         {
           //${cusId}
             method:"POST",
@@ -146,7 +151,7 @@ const Pizza = () => {
       try {
         console.log(obj);
         console.log(pID);
-        const response = await axios.put(`http://localhost:8080/updatePizza/1`,obj);
+        const response = await axios.put(`http://localhost:8080/updatePizza/${cusId}`,obj);
          console.log(response);
       } catch (error) {
         console.log(error);
@@ -169,7 +174,7 @@ const Pizza = () => {
       const delPizza = async (delpiz) => 
       {
         try {
-          const res = await fetch(`http://localhost:8080/delPizza/${delpiz}/1`,
+          const res = await fetch(`http://localhost:8080/delPizza/${delpiz}/${cusId}`,
           {
               method:"delete",
               

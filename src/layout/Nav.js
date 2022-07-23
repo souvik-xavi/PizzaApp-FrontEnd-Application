@@ -71,8 +71,9 @@ function Nav(props) {
     const temp = useSelector((state) => state);
     if (typeof temp !== 'undefined' ){
        if(temp.user){
-        t=temp.user.name
-        role=temp.user.role
+        t=temp.user.customerName;
+        
+        role=temp.user.type;
        }
     }
   const [anchorElNav, setAnchorElNav] = useState(null);
@@ -95,7 +96,7 @@ function Nav(props) {
   const handleAddProduct=(event)=>{
     event.preventDefault();
     setAnchorElUser(null);
-    navigate("/addproduct");
+    navigate("/pizzamgmt");
     
   }
 
@@ -257,13 +258,13 @@ function Nav(props) {
               <MenuItem  onClick={()=> navigate("/profile")}>
                 <Typography textAlign="center">Account</Typography>
               </MenuItem>
-              <MenuItem  onClick={() => navigate("/viewcart")}>
-                <Typography onClick={() => navigate("/viewcart")}textAlign="center">Cart</Typography>
+              <MenuItem  onClick={() => navigate("/BookOrder")}>
+                <Typography onClick={() => navigate("/BookOrder")}textAlign="center">Book Order</Typography>
               </MenuItem>
               <MenuItem  onClick={() => navigate("/vieworder")}>
-                <Typography textAlign="center">Order</Typography>
+                <Typography textAlign="center">View Order</Typography>
               </MenuItem>
-              {role==='seller' ?
+              {role==='admin' ?
               <div>
               <MenuItem  onClick={()=> navigate("/viewProductList")}>
                 <Typography textAlign="center">My Products</Typography>

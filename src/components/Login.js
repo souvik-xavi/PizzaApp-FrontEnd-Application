@@ -69,7 +69,7 @@ export default function Form() {
           draggable: true,
           progress: undefined,
         });
-        dispatch(setLogin(response.data.customerId,response.data.type));
+        dispatch(setLogin(response.data.customerId,response.data));
         
       } catch (error) {
         console.log(error.response.data.message);

@@ -1,16 +1,17 @@
 import React,{useState, useEffect} from 'react';
 import { NavLink, useParams, useHistory } from 'react-router-dom';
+import { useSelector } from "react-redux";
 
 const PizzaOrder = () => {
-
-    const {customer_id} = useParams();
 
     // const history = useHistory();
 
     const [order, setOrder] = useState([]);
+    const temp = useSelector((state) => state);
+    var cusId = temp.id;
 
     const viewOrder = async (e) => {
-      const res = await fetch(`http://localhost:8080/viewOrder/admin/${customer_id}`, {
+      const res = await fetch(`http://localhost:8080/viewPizzaOrder/1`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -39,42 +40,39 @@ const PizzaOrder = () => {
 
     return (
       <>
-     <h1 className="text-center">View PizzaOrder</h1>
+     <h1 className="text-center" id="orderheader">View PizzaOrder</h1>
       <div className="containers">
           <table className="table table-striped">
               <thead>
                 <tr>
-                  <th scope="col">pizzaOrderId</th>
-                  <th scope="col">quantity</th>
+                  <th scope="col">PizzaOrderId</th>
+                  {/* <th scope="col">quantity</th>
                   <th scope="col">size</th>
-                  <th scope="col">totalCost</th>
-                  <th scope="col">couponId</th>
-                  <th scope="col">customerId</th>
-                  <th scope="col">pizzaName</th>
+                  <th scope="col">totalCost</th> */}
+                  <th scope="col">CouponId</th>
+                  <th scope="col">CustomerId</th>
+                  <th scope="col">PizzaName</th>
                 </tr>
               </thead>
               <tbody>
                 
-                 {/* {
-                  pizzas.map((val)=>{
+                  {
+                  order.map((val)=>{
                     return(
                       <>
                             <tr className='mytable'>
-                            <td scope="row" className=''>{val.pizzaId}</td>
-                            <td>{val.pizzaType}</td>
+                            <td scope="row" className=''>{val.pizzaOrderId}</td>
+                            {/* <td>{val.quantiy}</td>
+                            <td>{val.size}</td>
+                            <td>{val.totalCost}</td> */}
+                            <td>{val.couponId}</td>
+                            <td>{val.customerId}</td>
                             <td>{val.pizzaName}</td>
-                            <td>{val.pizzaDescription}</td>
-                            <td>{val.pizzaCost}</td>
-                            <td>
-                            <NavLink to="" className="btn btn-primary">Add Pizza</NavLink> &nbsp;
-                            <NavLink to="" className="btn btn-info">Update Pizza</NavLink> &nbsp;
-                            <NavLink to="" className="btn btn-danger">Delete Pizza</NavLink>
-                              </td>
                             </tr>
                       </>
                     )
                   })
-                 } */}
+                 } 
                 
               </tbody>
             </table>

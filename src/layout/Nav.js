@@ -175,7 +175,7 @@ function Nav(props) {
                 <Typography textAlign="center">Pricing</Typography>
               </MenuItem>
               <MenuItem onClick={handleCloseNavMenu}>
-                <Typography onClick={() => navigate("/aboutus")} textAlign="center">About us</Typography>
+                <Typography onClick={() => navigate("/coupan")} textAlign="center">Coupon</Typography>
               </MenuItem>
           </Menu>
         </Box>
@@ -214,12 +214,12 @@ function Nav(props) {
             >
             Home
             </Button>
-            {/* <Button
-              onClick={() => navigate("/aboutus")}
+             <Button
+              onClick={() => navigate("/coupan")}
               sx={{ my: 2, color: 'white', display: 'block' }}
             >
-            About us
-            </Button>     */}
+            Coupon
+            </Button>    
         </Box>
         {/* <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
         <Search>

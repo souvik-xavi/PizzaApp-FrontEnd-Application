@@ -9,21 +9,26 @@ import PizzaOrder from './components/PizzaOrder';
 import BookOrder from './components/BookOrder';
 import Nav from './layout/Nav';
 import ViewAllPizzaOrder from './components/ViewAllPizzaOrder';
+import Dashboard from './components/Dashboard';
+import Coupan from './components/Coupan';
 
 function App() {
   return (
     <Router>
       <nav>
         <Nav/>
-      </nav>
+        </nav>
+        
       <Routes>
-    
+        
+      <Route path="/" element={<Dashboard/>} />
       <Route path="/login" element={<Login/>} />
       <Route path="/register" element={<Register/>} />
       <Route path="/pizzamgmt" element={<Pizza/>}/>
       <Route path="/vieworder" element={<PizzaOrder/>}/>
       <Route path="/BookOrder" element={<BookOrder/>}/>
       <Route path="/ViewAllPizzaOrder" element={<ViewAllPizzaOrder/>}/>
+      <Route path="/Coupan" element= {<Coupan/>}/>
 
 
       </Routes>

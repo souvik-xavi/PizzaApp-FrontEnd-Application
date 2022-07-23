@@ -12,9 +12,10 @@ body{
     position: relative;
     padding: 5% 10%;
 }
-.pizzabtn{
+/* .pizzabtn{
     margin-left: 10% !important;
-}
+    margin-top: 100px !important;
+    padding: 1% 2% !important; */
 .addPizzaForm{
     position: absolute;
     top: -5%;
@@ -27,98 +28,164 @@ body{
 .mylabel{
     margin-top: 15px;
 }
-/* .pizza{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+
+
+
+
+
+
+/* CSS */
+.button {
+    margin-left: 10% !important;
+    margin-top: 80px !important;
+  align-items: center;
+  appearance: none;
+  background-image: radial-gradient(100% 100% at 100% 0, #5adaff 0, #5468ff 100%);
+  border: 0;
+  border-radius: 6px;
+  box-shadow: rgba(45, 35, 66, .4) 0 2px 4px,rgba(45, 35, 66, .3) 0 7px 13px -3px,rgba(58, 65, 111, .5) 0 -3px 0 inset;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: "JetBrains Mono",monospace;
+  height: 48px;
+  justify-content: center;
+  line-height: 1;
+  list-style: none;
+  overflow: hidden;
+  padding-left: 16px;
+  padding-right: 16px;
+  position: relative;
+  text-align: left;
+  text-decoration: none;
+  transition: box-shadow .15s,transform .15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  will-change: box-shadow,transform;
+  font-size: 18px;
 }
-.pizza__img{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+
+.button:focus {
+  box-shadow: #3c4fe0 0 0 0 1.5px inset, rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
 }
-.pizza__title{
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: rgb(14, 13, 13);
-    text-align: center;
+
+.button:hover {
+  box-shadow: rgba(45, 35, 66, .4) 0 4px 8px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
+  transform: translateY(-2px);
 }
-.pizza__desc{
-    font-size: 1.5rem;
-    color: #fff;
-    text-align: center;
+
+.button:active {
+  box-shadow: #3c4fe0 0 3px 7px inset;
+  transform: translateY(2px);
 }
-.pizza__price{
-    font-size: 2rem;
-    font-weight: bold;
-    color: #fff;
-    text-align: center;
+
+
+
+.buttonU {
+
+  align-items: center;
+  appearance: none;
+  background-image: radial-gradient(100% 100% at 100% 0, #5a78ff 0, #54b2ff 100%);
+  border: 0;
+  border-radius: 6px;
+  box-shadow: rgba(45, 35, 66, .4) 0 2px 4px,rgba(45, 35, 66, .3) 0 7px 13px -3px,rgba(58, 65, 111, .5) 0 -3px 0 inset;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: "JetBrains Mono",monospace;
+  height: 48px;
+  justify-content: center;
+  line-height: 1;
+  list-style: none;
+  overflow: hidden;
+  padding-left: 16px;
+  padding-right: 16px;
+  position: relative;
+  text-align: left;
+  text-decoration: none;
+  transition: box-shadow .15s,transform .15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  will-change: box-shadow,transform;
+  font-size: 18px;
 }
-.pizza__btn{
-    width: 10%;
-    height: 5rem;
-    background-color: rgb(173, 36, 36);
-    border: 1px solid rgb(5, 5, 5);
-    border-radius: 5px;
-    color: #000;
-    font-size: 1.5rem;
-    font-weight: bold;
-    text-align: center;
-    cursor: pointer;
+
+.buttonU:focus {
+  box-shadow: #3cc7e0 0 0 0 1.5px inset, rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3ccde0 0 -3px 0 inset;
 }
-.pizza__btn:hover{
-    background-color: #000;
-    color: #fff;
+
+.buttonU:hover {
+  box-shadow: rgba(45, 35, 66, .4) 0 4px 8px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3cbae0 0 -3px 0 inset;
+  transform: translateY(-2px);
 }
-.pizza__btn:disabled{
-    background-color: #ccc;
-    color: #000;
+
+.buttonU:active {
+  box-shadow: #3cbfe0 0 3px 7px inset;
+  transform: translateY(2px);
 }
-.pizza__btn:disabled:hover{
-    background-color: #ccc;
-    color: #000;
+
+
+
+.buttonD {
+   
+  align-items: center;
+  appearance: none;
+  background-image: radial-gradient(100% 100% at 100% 0, #ff5a5a 0, #ff5454 100%);
+  border: 0;
+  border-radius: 6px;
+  box-shadow: rgba(45, 35, 66, .4) 0 2px 4px,rgba(45, 35, 66, .3) 0 7px 13px -3px,rgba(58, 65, 111, .5) 0 -3px 0 inset;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: "JetBrains Mono",monospace;
+  height: 48px;
+  justify-content: center;
+  line-height: 1;
+  list-style: none;
+  overflow: hidden;
+  padding-left: 16px;
+  padding-right: 16px;
+  position: relative;
+  text-align: left;
+  text-decoration: none;
+  transition: box-shadow .15s,transform .15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  will-change: box-shadow,transform;
+  font-size: 18px;
 }
-.pizza__btn:disabled:active{
-    background-color: #ccc;
-    color: #000;
+
+.buttonD:focus {
+  box-shadow: #e03c3c 0 0 0 1.5px inset, rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #e03c3c 0 -3px 0 inset;
 }
-.pizza__btn:disabled:focus{
-    background-color: #ccc;
-    color: #000;
-}  */
-/* .modal {
-    font-size: 12px;
-  }
-  .modal > .header {
-    width: 100%;
-    border-bottom: 1px solid gray;
-    font-size: 18px;
-    text-align: center;
-    padding: 5px;
-  }
-  .modal > .content {
-    width: 100%;
-    padding: 10px 5px;
-  }
-  .modal > .actions {
-    width: 100%;
-    padding: 10px 5px;
-    margin: auto;
-    text-align: center;
-  }
-  .modal > .close {
-    cursor: pointer;
-    position: absolute;
-    display: block;
-    padding: 2px 5px;
-    line-height: 20px;
-    right: -10px;
-    top: -10px;
-    font-size: 24px;
-    background: #ffffff;
-    border-radius: 18px;
-    border: 1px solid #cfcece;
-  } */
+
+.buttonD:hover {
+  box-shadow: rgba(45, 35, 66, .4) 0 4px 8px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #e03c3c 0 -3px 0 inset;
+  transform: translateY(-2px);
+}
+
+.buttonD:active {
+  box-shadow: #e03c3c 0 3px 7px inset;
+  transform: translateY(2px);
+}
+
+.pizzaText {
+  font-family: "JetBrains Mono",monospace;
+  font-size: 20px;
+  font-weight: bold;
+  /* margin-bottom: 10px; */
+  /* display: flex; */
+  /* justify-content: center; */
+    /* align-items: center; */
+    /* flex-direction: column; */
+    
+}

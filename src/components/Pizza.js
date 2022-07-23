@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from 'react'
-// import axios from 'axios';
 //import { useHistory } from "react-router-dom";
 import './pizza.css';
 import Popup from 'reactjs-popup';
 import { useSelector } from "react-redux";
 import axios from 'axios';
+
+
 
 
 const Pizza = () => {
@@ -35,7 +36,7 @@ const Pizza = () => {
 
 
 
-
+    // View all pizzas
 
     const viewPizza = async (e) => {
       const res = await fetch(`http://localhost:8080/viewPizza`, {
@@ -81,7 +82,7 @@ const Pizza = () => {
 
 
 
-
+      //Add Pizza to the database
 
       const addPizzaDetails = async (e) => {
         e.preventDefault();
@@ -137,7 +138,7 @@ const Pizza = () => {
 
 
 
-
+    // Update Pizzza Details
 
     const addUpdatePizzaDetails = async (e,pID) => {
       e.preventDefault();

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
-//import './pizza.css';
 import { toast, ToastContainer } from "react-toastify";
 import Popup from "reactjs-popup";
 import "./BookOrder.css";
@@ -36,10 +35,7 @@ const Pizza = () => {
     console.log(cusId);
     console.log(q);
     try {
-      const res = await axios.post(
-        `http://localhost:8080/bookPizzaOrder/${cusId}/${pizzaData.pizza_id}/${pizzaData.coupon_id}`,
-        { q }
-      );
+      const res = await axios.post(`http://localhost:8080/bookPizzaOrder/${cusId}/${pizzaData.pizza_id}/${pizzaData.coupon_id}`,{q});
       console.log(res);
       toast.dark(res.data, {
         position: "top-right",
@@ -88,14 +84,7 @@ const Pizza = () => {
       <h1 className="text-center" id="orderheader">
         Order Pizza
       </h1>
-      <Popup
-        trigger={
-          <button className="btn btn-outline-primary mx-5 orderbtn">
-            Book Pizza Order
-          </button>
-        }
-        position="right center"
-      >
+      <Popup trigger={<button className="btn btn-outline-primary mx-5 orderbtn">Book Pizza Order</button>} position="right center">
         <div className="popup">
           <h2>Book Pizza Order</h2>
           <form onSubmit={submit} className="bookpizzaform">

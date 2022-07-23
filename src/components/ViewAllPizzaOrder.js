@@ -39,17 +39,12 @@ const ViewAllPizzaOrder = () => {
       <br></br>
       <br></br>
       <br></br>
-      <h1 className="text-center" id="orderheader">
-        View All Pizza Order
-      </h1>
+      <h1 className="text-center" id="orderheader">View All Pizza Order</h1>
       <div className="containers">
         <table className="table table-striped">
           <thead>
             <tr>
               <th scope="col">PizzaOrderId</th>
-              {/* <th scope="col">quantity</th>
-                  <th scope="col">size</th>
-                  <th scope="col">totalCost</th> */}
               <th scope="col">CouponId</th>
               <th scope="col">CustomerId</th>
               <th scope="col">PizzaName</th>
@@ -63,9 +58,6 @@ const ViewAllPizzaOrder = () => {
                     <td scope="row" className="">
                       {val.pizzaOrderId}
                     </td>
-                    {/* <td>{val.quantiy}</td>
-                            <td>{val.size}</td>
-                            <td>{val.totalCost}</td> */}
                     <td>{val.couponId}</td>
                     <td>{val.customerId}</td>
                     <td>{val.pizzaName}</td>

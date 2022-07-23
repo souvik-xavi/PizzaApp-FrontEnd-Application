@@ -108,7 +108,8 @@ function Nav(props) {
   };
 
   const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
+      setAnchorElNav(null);
+      navigate("/BookOrder");
   };
 
   const handleCloseUserMenu = () => {
@@ -203,7 +204,7 @@ function Nav(props) {
               onClick={handleCloseNavMenu}
               sx={{ my: 2, color: 'white', display: 'block' }}
             >
-            Products
+            Pizza
             </Button>
             
           
@@ -213,14 +214,14 @@ function Nav(props) {
             >
             Home
             </Button>
-            <Button
+            {/* <Button
               onClick={() => navigate("/aboutus")}
               sx={{ my: 2, color: 'white', display: 'block' }}
             >
             About us
-            </Button>    
+            </Button>     */}
         </Box>
-        <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+        {/* <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
         <Search>
             <SearchIconWrapper>
               <SearchIcon />
@@ -230,7 +231,7 @@ function Nav(props) {
               inputProps={{ 'aria-label': 'search' }}
             />
           </Search>
-          </Box>
+          </Box> */}
          { t ?
         <Box sx={{ flexGrow: 0 }}>
           <Tooltip title="Open settings">

@@ -7,7 +7,6 @@ import Register from './components/Register';
 import Pizza from './components/Pizza';
 import PizzaOrder from './components/PizzaOrder';
 import BookOrder from './components/BookOrder';
-//import Header from './layout/Header';
 import Nav from './layout/Nav';
 import ViewAllPizzaOrder from './components/ViewAllPizzaOrder';
 

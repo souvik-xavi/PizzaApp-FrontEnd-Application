@@ -1,10 +1,8 @@
 import React, {useState, useEffect} from 'react'
-//import { useHistory } from "react-router-dom";
 import './pizza.css';
 import Popup from 'reactjs-popup';
 import { useSelector } from "react-redux";
 import axios from 'axios';
-//import Header from '../layout/Header';
 import { toast, ToastContainer } from "react-toastify";
 
 
@@ -192,7 +190,7 @@ const Pizza = () => {
 
 
   
-
+    //Delete Pizza Details
 
       const delPizza = async (delpiz) => 
       {
@@ -245,6 +243,11 @@ const Pizza = () => {
   return (
     <>
    <h1 className="text-center">Pizza Management</h1>
+
+
+
+   
+                               {/* Add Pizza button */}
                               <Popup trigger={<button className="button mx-5">Add Pizza</button>} position="right center">
                                  <div className="popup">
                                 <h2>Add Pizza</h2>
@@ -295,7 +298,9 @@ const Pizza = () => {
                           <td>{val.pizzaCost}</td>
                           <td>
                             
-                            
+
+
+                              {/* Uodate Pizza Button */}
                             <Popup trigger={<button className="buttonU" onClick={()=>setPizzaId(val.pizzaId)} >Update Pizza</button>} position="right center">
                               <div className="popup">
                                 <h2>Update Pizza</h2>
@@ -325,6 +330,9 @@ const Pizza = () => {
                               </div>
                             </Popup>
                             &nbsp; &nbsp; &nbsp;  &nbsp;
+
+
+                            {/* Delete Pizza Button */}
                             <button className="buttonD" onClick={()=>delPizza(val.pizzaId)} >Delete Pizza </button>
                             
                           </td>

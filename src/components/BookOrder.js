@@ -34,22 +34,12 @@ const Pizza = () => {
     console.log(pizzaData.pizza_id);
     console.log(cusId);
     console.log(q);
-    if(pizzaData.pizza_id===""||pizzaData.coupon_id===""||pizzaData.quantity===""){
-      toast.dark('All fields are required', {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          });
-  }else{
-
-    try {
-      const res = await axios.post(`http://localhost:8080/bookPizzaOrder/${cusId}/${pizzaData.pizza_id}/${pizzaData.coupon_id}`,{q});
-      console.log(res);
-      toast.dark(res.data, {
+    if (
+      pizzaData.pizza_id === "" ||
+      pizzaData.coupon_id === "" ||
+      pizzaData.quantity === ""
+    ) {
+      toast.dark("All fields are required", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -58,10 +48,23 @@ const Pizza = () => {
         draggable: true,
         progress: undefined,
       });
-    } catch (error) {
-      console.log(error);
+    } else {
+      try {
+        const res = await axios.post(`http://localhost:8080/bookPizzaOrder/${cusId}/${pizzaData.pizza_id}/${pizzaData.coupon_id}`,{ q });
+        console.log(res);
+        toast.dark(res.data, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      } catch (error) {
+        console.log(error);
+      }
     }
-  }
   };
 
   const viewPizza = async (e) => {
@@ -97,7 +100,14 @@ const Pizza = () => {
       <h1 className="text-center" id="orderheader">
         Order Pizza
       </h1>
-      <Popup trigger={<button className="btn btn-outline-primary mx-5 orderbtn">Book Pizza Order</button>} position="right center">
+      <Popup
+        trigger={
+          <button className="btn btn-outline-primary mx-5 orderbtn">
+            Book Pizza Order
+          </button>
+        }
+        position="right center"
+      >
         <div className="popup">
           <h2>Book Pizza Order</h2>
           <form onSubmit={submit} className="bookpizzaform">

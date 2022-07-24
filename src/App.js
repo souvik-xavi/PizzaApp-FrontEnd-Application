@@ -11,6 +11,8 @@ import Nav from './layout/Nav';
 import ViewAllPizzaOrder from './components/ViewAllPizzaOrder';
 import Dashboard from './components/Dashboard';
 import Coupan from './components/Coupan';
+import ViewCoupan from './components/ViewCoupan';
+
 
 function App() {
   return (
@@ -29,6 +31,7 @@ function App() {
       <Route path="/BookOrder" element={<BookOrder/>}/>
       <Route path="/ViewAllPizzaOrder" element={<ViewAllPizzaOrder/>}/>
       <Route path="/Coupan" element= {<Coupan/>}/>
+      <Route path="/ViewCoupan" element= {<ViewCoupan/>}/>
 
 
       </Routes>

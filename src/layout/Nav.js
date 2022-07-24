@@ -136,7 +136,7 @@ function Nav(props) {
             textDecoration: 'none',
           }}
         >
-          LOGO
+          Pizzeria 
         </Typography>
 
         <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -175,7 +175,7 @@ function Nav(props) {
                 <Typography textAlign="center">Pricing</Typography>
               </MenuItem>
               <MenuItem onClick={handleCloseNavMenu}>
-                <Typography onClick={() => navigate("/Coupan")} textAlign="center">Coupon</Typography>
+                <Typography onClick={() => navigate("/ViewCoupan")} textAlign="center">Coupon</Typography>
               </MenuItem>
           </Menu>
         </Box>
@@ -196,7 +196,7 @@ function Nav(props) {
             textDecoration: 'none',
           }}
         >
-          LOGO
+          Pizzeria
         </Typography>
         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
           
@@ -215,7 +215,7 @@ function Nav(props) {
             Home
             </Button>
              <Button
-              onClick={() => navigate("/Coupan")}
+              onClick={() => navigate("/ViewCoupan")}
               sx={{ my: 2, color: 'white', display: 'block' }}
             >
             Coupon
@@ -272,6 +272,9 @@ function Nav(props) {
               </MenuItem></div>:<MenuItem></MenuItem>}
               <MenuItem  onClick={()=> navigate("/viewAllPizzaOrder")}>
                 <Typography textAlign="center">View All Pizza Order</Typography>
+              </MenuItem>
+              <MenuItem  onClick={()=> navigate("/Coupan")}>
+                <Typography textAlign="center">Coupon Management</Typography>
               </MenuItem>
                 
               <MenuItem  onClick={handleLogout}>

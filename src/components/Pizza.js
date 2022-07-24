@@ -98,8 +98,23 @@ const Pizza = () => {
       const addPizzaDetails = async (e) => {
         e.preventDefault();
       
+
         
         const{pizzaType, pizzaName, pizzaDescription , pizzaCost} = addPizza;
+        
+
+        if(pizzaType===""||pizzaName===""||pizzaDescription===""||pizzaCost===""){
+            toast.dark('All fields are required', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                });
+        }else{
+
 
         const res = await fetch(`http://localhost:8080/addPizza/${cusId}`,
         {
@@ -135,7 +150,10 @@ const Pizza = () => {
             progress: undefined,
             });
         } 
-        viewPizza()         
+      }
+
+        viewPizza() 
+
       };
 
 
@@ -169,16 +187,26 @@ const Pizza = () => {
     const addUpdatePizzaDetails = async (e,pID) => {
       e.preventDefault();
       const obj={"pizzaId":pID,"pizzaType":pizzaType,"pizzaName":pizzaName,"pizzaDescription":pizzaDescription,"pizzaCost":pizzaCost}
-      try {
+      if(pizzaType===""||pizzaName===""||pizzaDescription===""||pizzaCost===""){
+        toast.dark('All fields are required', {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            });
+    }else{
+      try {        
         console.log(obj);
         console.log(pID);
         const response = await axios.put(`http://localhost:8080/updatePizza/${cusId}`,obj);
          console.log(response);
       } catch (error) {
         console.log(error);
-      }    
-      
-      console.log(pizzaId, pizzaType, pizzaName, pizzaDescription, pizzaCost);
+      }   
+    }
       viewPizza();
     }
 

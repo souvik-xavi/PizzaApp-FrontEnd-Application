@@ -3,6 +3,7 @@ import'./Coupan.css';
 import Popup from 'reactjs-popup';
 import { toast} from "react-toastify";
 import { useSelector } from "react-redux";
+import axios from 'axios';
 
 const Coupan=()=>{
     const[coupans,setCoupans]=useState([]);
@@ -12,48 +13,36 @@ const Coupan=()=>{
         coupanType:"",
         coupanDescription:""
     });
+
     const temp=useSelector((state)=>state);
     var cusId=temp.id;
 
-    console.log(coupans)
-
-
-
-    const viewCoupan=async(e)=>{
-        try{
-            const res=await fetch(`http://localhost:8080/viewCoupan`,{
-            method:"GET",
-            headers:{
-                "Content-Type":"application/json",
-            }
-        });
-
-        const data=await res.json();
-        console.log(data);
-
-        if(res.status===404|| !data){
-            
-            toast.dark('Error: Data Not Fetch', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                });
-        }else{
-            setCoupans(data);
+    const viewCoupan = async (e) => {
+      const res = await fetch(`http://localhost:8080/viewCoupon`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
         }
-        }catch(error){
-            console.log(error);
-        }
+      });
+    
+      const data = await res.json();
+      console.log(data);
+  
+      if (res.status === 404 || !data) {
+        toast.dark('Error: Data Not Fetch', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          });
+      } else {
+        setCoupans(data);
+      
+      }
     }
-
-
-
-
-
 
     const setCoupanDetails=async(e)=>{
         const{name,value}=e.target;
@@ -63,16 +52,11 @@ const Coupan=()=>{
                 [name]:value
             }
         })
-    }
-
-
-
-
-
+     }
 
     const addCoupanDetails=async(e)=>{
         e.preventDefault();
-console.log("Function run")
+
         const {coupanName,coupanType,coupanDescription}=addCoupan;
         const res=await fetch(`http://localhost:8080/addCoupon/${cusId}`,{
             method:"POST",
@@ -85,7 +69,10 @@ console.log("Function run")
         });
 
         const addData=await res.json();
-        console.log(addData);
+
+        console.log(`${addData} data added`);
+        
+       
 
         if(res.status===404||!addData){
             toast.dark('Error:Data Not Save', {
@@ -99,6 +86,7 @@ console.log("Function run")
                 });
             
         }else{
+          viewCoupan();
             toast.dark('Data Save Successfully', {
                 position: "top-right",
                 autoClose: 5000,
@@ -109,18 +97,14 @@ console.log("Function run")
                 progress: undefined,
                 });
             
+               
         }
+        viewCoupan();
     };
-
-
-
-
-
-
     
 const delCoupan=async(delcp)=>{
     try{
-        const res=await fetch(`http://localhost:8080/deleteCoupan`,{
+        const res=await fetch(`http://localhost:8080/deleteCoupan/${delcp}`,{
             method:"delete",
         });
         const postDelete=await res.json();
@@ -146,18 +130,13 @@ const delCoupan=async(delcp)=>{
         });
 }
 
-
-
-
-
-
     useEffect(()=>{viewCoupan()},[])
 
 
     return(
         <>
         <h1 className="text-center">Coupan Management</h1>
-                              <Popup trigger={<button className="btn btn-primary mx-5 coupanbtn ">Add Coupan</button>} position="right center">
+                              <Popup trigger={<button className="btn btn-primary mx-5 coupanbtn" >Add Coupan</button>} position="right center">
                                  <div className="popup">
                                 <h2>Add Coupan</h2>
                                 <form className="addCoupanForm">
@@ -171,7 +150,7 @@ const delCoupan=async(delcp)=>{
                                   </div>
                                   <div className="form-group">
                                     <label htmlFor="coupanDescription">Coupan Description</label>
-                                    <input type="text" className="form-control" id="coupanDescription" placeholder="Enter Coupan Description" onChange={setCoupanDetails} value={addCoupan.coupanDescription} name={"coupanDescription"} />
+                                    <input type="text" className="form-control" id="coupanDescription" placeholder="Enter Coupan Description" onChange={setCoupanDetails} value={addCoupan.coupanDescription} name="coupanDescription"/>
                                   </div>
                                   <button type="submit" className="btn btn-primary" onClick={addCoupanDetails}>Submit</button>
                                 </form>
@@ -189,11 +168,12 @@ const delCoupan=async(delcp)=>{
               </tr>
             </thead>
             <tbody>  
-            {
+              {
                 coupans.map((val)=>{
-                  return(
-                    <>
-                          <tr className='mytable'>
+                  
+                    return(
+                      <>
+                             <tr className='mytable'>
                           <td scope="row">{val.coupanId}</td>
                           <td>{val.coupanName}</td>
                           <td>{val.coupanType}</td>                          
@@ -203,14 +183,17 @@ const delCoupan=async(delcp)=>{
                          
                           </td>
                         </tr>
-                        </>   
+                      </>
+                    )
+                  
+                })
+              }
+                     
         
-    )
-})}
      </tbody>
           </table>
     </div>
     </>
   );
 }
-export default Coupan;
+export default Coupan;

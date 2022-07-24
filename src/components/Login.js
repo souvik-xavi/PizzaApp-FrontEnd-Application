@@ -70,7 +70,7 @@ export default function Form() {
           progress: undefined,
         });
         dispatch(setLogin(response.data.customerId,response.data));
-        
+        navigate("/BookOrder")
       } catch (error) {
         console.log(error.response.data.message);
         toast.dark(error.response.data.message, {

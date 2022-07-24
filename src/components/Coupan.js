@@ -17,10 +17,6 @@ const Coupan=()=>{
     const temp=useSelector((state)=>state);
     var cusId=temp.id;
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 78d006f396f9e6a3ea1af757beee7ac694da64fc
     const viewCoupan = async (e) => {
       const res = await fetch(`http://localhost:8080/viewCoupon`, {
         method: "GET",
@@ -44,11 +40,7 @@ const Coupan=()=>{
           });
       } else {
         setCoupans(data);
-<<<<<<< HEAD
       
-=======
-        
->>>>>>> 78d006f396f9e6a3ea1af757beee7ac694da64fc
       }
     }
 
@@ -204,8 +196,4 @@ const delCoupan=async(delcp)=>{
     </>
   );
 }
-<<<<<<< HEAD
 export default Coupan;
-=======
-export default Coupan;
->>>>>>> 78d006f396f9e6a3ea1af757beee7ac694da64fc

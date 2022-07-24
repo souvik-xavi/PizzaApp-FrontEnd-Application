@@ -50,7 +50,7 @@ const BookOrder = () => {
       });
     } else {
       try {
-        const res = await axios.post(`http://localhost:8080/bookPizzaOrder/${cusId}/${pizzaData.pizza_id}/${pizzaData.coupon_id}`,{ q });
+        const res = await axios.post(`http://localhost:8080/bookPizzaOrder/${cusId}/${pizzaData.pizza_id}/${pizzaData.coupon_id}`,{"quantity": q });
         console.log(res);
         toast.dark(res.data, {
           position: "top-right",

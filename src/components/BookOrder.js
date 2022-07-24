@@ -7,7 +7,7 @@ import "./BookOrder.css";
 import { useSelector } from "react-redux";
 import { async } from "q";
 
-const Pizza = () => {
+const BookOrder = () => {
   const [pizzas, setPizzas] = useState([]);
   const [order, setOrder] = useState({
     pizza_id: "",
@@ -188,4 +188,4 @@ const Pizza = () => {
   );
 };
 
-export default Pizza;
+export default BookOrder;

@@ -34,6 +34,18 @@ const Pizza = () => {
     console.log(pizzaData.pizza_id);
     console.log(cusId);
     console.log(q);
+    if(pizzaData.pizza_id===""||pizzaData.coupon_id===""||pizzaData.quantity===""){
+      toast.dark('All fields are required', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          });
+  }else{
+
     try {
       const res = await axios.post(`http://localhost:8080/bookPizzaOrder/${cusId}/${pizzaData.pizza_id}/${pizzaData.coupon_id}`,{q});
       console.log(res);
@@ -49,6 +61,7 @@ const Pizza = () => {
     } catch (error) {
       console.log(error);
     }
+  }
   };
 
   const viewPizza = async (e) => {

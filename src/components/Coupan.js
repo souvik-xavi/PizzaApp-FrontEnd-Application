@@ -11,7 +11,8 @@ const Coupan=()=>{
     const[addCoupan,setAddCoupan]=useState({
         coupanName:"",
         coupanType:"",
-        coupanDescription:""
+        coupanDescription:"",
+        couponValue:""
     });
 
     const temp=useSelector((state)=>state);
@@ -57,15 +58,28 @@ const Coupan=()=>{
     const addCoupanDetails=async(e)=>{
         e.preventDefault();
 
-        const {coupanName,coupanType,coupanDescription}=addCoupan;
+        const {coupanName,coupanType,coupanDescription, couponValue}=addCoupan;
+       
+        if(coupanName===""||coupanType===""||coupanDescription===""||couponValue===""){
+          toast.dark('All fields are required', {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              });
+      }else{
         const res=await fetch(`http://localhost:8080/addCoupon/${cusId}`,{
             method:"POST",
             headers:{
                 "Content-Type":"application/json"
             },
             body:JSON.stringify({
-                coupanName,coupanType,coupanDescription
+                coupanName,coupanType,coupanDescription,couponValue
             })
+          
         });
 
         const addData=await res.json();
@@ -99,6 +113,7 @@ const Coupan=()=>{
             
                
         }
+      }
         viewCoupan();
     };
     
@@ -152,6 +167,10 @@ const delCoupan=async(delcp)=>{
                                     <label htmlFor="coupanDescription">Coupan Description</label>
                                     <input type="text" className="form-control" id="coupanDescription" placeholder="Enter Coupan Description" onChange={setCoupanDetails} value={addCoupan.coupanDescription} name="coupanDescription"/>
                                   </div>
+                                  <div className="form-group">
+                                    <label htmlFor="coupanDescription">Coupan Value</label>
+                                    <input type="text" className="form-control" id="coupanValue" placeholder="Enter Coupan Value" onChange={setCoupanDetails} value={addCoupan.couponValue} name="couponValue"/>
+                                  </div>
                                   <button type="submit" className="btn btn-primary" onClick={addCoupanDetails}>Submit</button>
                                 </form>
                               </div>
@@ -164,6 +183,7 @@ const delCoupan=async(delcp)=>{
                 <th scope="col">Coupan Type</th>
                 <th scope="col">Coupan Name</th>
                 <th scope="col">Coupan Description</th>
+                <th scope="col">Coupan Value</th>
                 <th scope="col">Action</th>
               </tr>
             </thead>
@@ -178,6 +198,7 @@ const delCoupan=async(delcp)=>{
                           <td>{val.coupanName}</td>
                           <td>{val.coupanType}</td>                          
                           <td>{val.coupanDescription}</td>
+                          <td>{val.couponValue}</td>
                           <td>
                           <button className="btn btn-primary" onClick={()=>delCoupan(val.coupanId)}>Delete Coupan</button>
                          
